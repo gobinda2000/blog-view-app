@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Use your ngrok/production backend URL
   const tracker = new ArticleViewTracker(
-    "https://20c33d5b4b2f.ngrok-free.app/apps/articles",
+    "https://9d287dbee03e.ngrok-free.app/apps/articles",
     viewDiv
   );
 
