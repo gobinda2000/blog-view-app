@@ -1,0 +1,11 @@
+{
+  "name": "blog-view-extension",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "shopify app dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

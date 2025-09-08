@@ -1,0 +1,23 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "30d4ad117574cbdc8c8481ee8cc48abc"
+name = "ViewCount"
+handle = "viewcount"
+application_url = "https://20c33d5b4b2f.ngrok-free.app/apps/articles"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2025-07"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_content,write_content,read_themes,write_themes"
+
+[auth]
+redirect_urls = [ "https://20c33d5b4b2f.ngrok-free.app/apps/articles/api/auth" ]
+
+[pos]
+embedded = false
