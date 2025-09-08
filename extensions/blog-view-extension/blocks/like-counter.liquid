@@ -7,9 +7,42 @@
 
 <script src="{{ 'article-like-counter.js' | asset_url }}" async></script>
 
+<script>
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const likeDiv = document.querySelector(".blog-likes");
+  if (!likeDiv) {
+    console.error("Like button element not found!");
+    return;
+  }
+
+  const tracker = new ArticleLikeTracker(
+    "{{ block.settings.api_url }}", // Your API endpoint
+    likeDiv
+  );
+});
+
+
+</script>
+
 {% schema %}
 {
   "name": "Blog Like Counter",
   "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "API url",
+      "autofill": true
+    },
+    {
+      "type": "color",
+      "id": "colour",
+      "label": "Star Colour",
+      "default": "#ff0000"
+    }
+  ]
 }
 {% endschema %}
+

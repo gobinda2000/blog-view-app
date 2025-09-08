@@ -5,15 +5,36 @@
 
 <script src="{{ 'article-view-counter.js' | asset_url }}" async></script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const viewDiv = document.querySelector(".view-counter");
+
+  if (!viewDiv) {
+    console.error("View counter element not found!");
+    return;
+  }
+
+  // ✅ Use your ngrok/production backend URL
+  const tracker = new ArticleViewTracker(
+    "{{ block.settings.api_url }}",
+    viewDiv
+  );
+
+  tracker.sendView();
+});
+
+</script>
+
+
 {% schema %}
 {
   "name": "Blog View Counter",
   "target": "section",
   "settings": [
     {
-      "type": "product",
-      "id": "product",
-      "label": "Product",
+      "type": "text",
+      "id": "api_url",
+      "label": "API url",
       "autofill": true
     },
     {

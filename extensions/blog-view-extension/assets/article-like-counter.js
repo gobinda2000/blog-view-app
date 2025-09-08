@@ -77,16 +77,3 @@ class ArticleLikeTracker {
     this.likeButton.addEventListener("click", () => this.sendLike());
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const likeDiv = document.querySelector(".blog-likes");
-  if (!likeDiv) {
-    console.error("Like button element not found!");
-    return;
-  }
-
-  const tracker = new ArticleLikeTracker(
-    "https://e03f69676878.ngrok-free.app/apps/articles", // Your API endpoint
-    likeDiv
-  );
-});
