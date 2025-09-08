@@ -1,10 +1,7 @@
 {
-  "ratings": {
-    "stars": {
-      "label": "Ratings"
-    },
-    "home": {
-      "recommendationText": "Recommended Product!"
+  "blog": {
+    "view": {
+      "label": "View Count",
     }
   }
 }
