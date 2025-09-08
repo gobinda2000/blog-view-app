@@ -3,7 +3,7 @@
 client_id = "30d4ad117574cbdc8c8481ee8cc48abc"
 name = "ViewCount"
 handle = "viewcount"
-application_url = "https://9d287dbee03e.ngrok-free.app/apps/articles"
+application_url = "https://likes.wisewx.com/apps/articles"
 embedded = true
 
 [build]
@@ -17,7 +17,7 @@ api_version = "2025-07"
 scopes = "read_content,write_content,read_themes,write_themes"
 
 [auth]
-redirect_urls = ["https://9d287dbee03e.ngrok-free.app/apps/articles/api/auth" ]
+redirect_urls = ["https://likes.wisewx.com/apps/articles/api/auth" ]
 
 [pos]
 embedded = false
