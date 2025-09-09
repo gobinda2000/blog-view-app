@@ -1,0 +1,18 @@
+
+  {
+    "settings_schema": {
+      "global": {
+        "settings": {
+            "blog": {
+              "view": {
+                "label": "View Count API URL",
+              },
+              "like": {
+                "label": "Like Count API URL",
+              },
+            }
+          }
+        }
+      }
+
+    }

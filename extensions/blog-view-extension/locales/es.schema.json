@@ -1,0 +1,17 @@
+  {
+    "settings_schema": {
+      "global": {
+        "settings": {
+            "blog": {
+              "view": {
+                "label": "Ver URL de API de recuento",
+              },
+              "like": {
+                "label": "Blog como URL de API",
+              },
+            }
+          }
+        }
+      }
+
+    }
