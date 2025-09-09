@@ -1,17 +1,15 @@
-async function getGuestId() {
-  try {
-    const response = await fetch("https://api64.ipify.org?format=json"); // Public IP API
-    const data = await response.json();
-    return `ip-${data.ip.replace(/\./g, "-")}`; // e.g., ip-192-168-1-100
-  } catch (error) {
-    console.error("Failed to fetch IP:", error);
-    return `guest-${Date.now()}`; // fallback random ID
-  }
+async function getOrCreateGuestId() {
+  const existingId = localStorage.getItem("guest_customer_id");
+  if (existingId) return existingId;
+
+  const newId = `guest-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  localStorage.setItem("guest_customer_id", newId);
+  return newId;
 }
 
 class ArticleLikeTracker {
   constructor(apiUrl, articleElement) {
-    this.apiUrl = apiUrl;
+    this.apiUrl = apiUrl; // e.g. "http://localhost:9292/apps/articles"
     this.articleElement = articleElement;
     this.articleId = articleElement.getAttribute("data-article-id");
     this.customerId = articleElement.getAttribute("data-customer-id") || null;
@@ -25,7 +23,7 @@ class ArticleLikeTracker {
     if (this.customerId && this.customerId.trim() !== "") {
       return this.customerId; // Logged-in user
     }
-    return await getGuestId(); // Guest → IP-based ID
+    return await getOrCreateGuestId();
   }
 
   hasLiked() {
@@ -43,10 +41,9 @@ class ArticleLikeTracker {
     }
 
     const customerId = await this.getCustomerId();
-
     const payload = {
       article_id: this.articleId,
-      customer_id: customerId // Always send something now
+      customer_id: customerId
     };
 
     fetch(this.apiUrl, {
@@ -60,12 +57,11 @@ class ArticleLikeTracker {
     })
     .then(data => {
       console.log("API Response:", data);
-
-      if (data.new_count !== undefined && this.counterSpan) {
-        this.counterSpan.textContent = data.new_count;
+      // ✅ Use the correct field name
+      if (data.like_count !== undefined && this.counterSpan) {
+        this.counterSpan.textContent = data.like_count;
       }
-
-      this.markLiked();
+      this.markLiked(); // ✅ only after success
     })
     .catch(error => {
       console.error("API fetch failed:", error);

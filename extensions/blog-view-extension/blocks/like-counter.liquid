@@ -1,29 +1,24 @@
+<script src="{{ 'article-like-counter.js' | asset_url }}" async></script>
 <div class="blog-likes view-counter center" data-article-id="{{ article.id }}">
   <button class="like-button">
     <img src="{{ 'icon-thumb-up.svg' | asset_url }}" alt="Like" width="24" height="24">
   </button>
   <span class="like-count">{{ article.metafields.custom.like_count | default: 0 }}</span>
 </div>
-
 <script src="{{ 'article-like-counter.js' | asset_url }}" async></script>
-
 <script>
-  
 document.addEventListener("DOMContentLoaded", () => {
   const likeDiv = document.querySelector(".blog-likes");
   if (!likeDiv) {
     console.error("Like button element not found!");
     return;
   }
-
   const tracker = new ArticleLikeTracker(
     "{{ block.settings.api_url }}", // Your API endpoint
     likeDiv
   );
 });
-
-
-</script>
+</script>'
 
 {% schema %}
 {
@@ -33,16 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       "type": "text",
       "id": "api_url",
-      "label": "API url",
-      "autofill": true
+      "label": "API URL",
+      "placeholder": "https://your-backend-endpoint.com"
     },
     {
       "type": "color",
       "id": "colour",
-      "label": "Star Colour",
+      "label": "Button Colour",
       "default": "#ff0000"
     }
   ]
 }
 {% endschema %}
-

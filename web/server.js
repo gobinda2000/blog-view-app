@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const articleRoutes = require("./routes/articleRoutes");
+const likeRoutes = require("./routes/articleRoutes");
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // Routes
 app.use("/", articleRoutes);
+app.use("/", likeRoutes);
 
 // Start server
 app.listen(PORT, () => {
