@@ -1,14 +1,29 @@
+.main-container{
+    display: flex;
+   
+}
 .like-counter{
     display: flex;
     justify-content: center;
+    align-items: baseline;
 }
 .view-counter{
     display: flex;
     justify-content: center;
+    align-items: baseline;
     gap: 0.8rem;
 }
 .like-button{
     border: none;
     background: transparent;
     cursor: pointer;
+}
+.left{
+    justify-content: left;
+}
+.right{
+    justify-content: right;
+}
+.center{
+    justify-content: center;
 }
