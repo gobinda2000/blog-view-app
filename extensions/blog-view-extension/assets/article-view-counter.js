@@ -57,20 +57,3 @@ class ArticleViewTracker {
       });
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const viewDiv = document.querySelector(".view-counter");
-
-  if (!viewDiv) {
-    console.error("View counter element not found!");
-    return;
-  }
-
-  // ✅ Use your ngrok/production backend URL
-  const tracker = new ArticleViewTracker(
-    "https://9d287dbee03e.ngrok-free.app/apps/articles",
-    viewDiv
-  );
-
-  tracker.sendView();
-});
