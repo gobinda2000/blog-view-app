@@ -36,7 +36,6 @@ class ArticleLikeTracker {
 
   async sendLike() {
     if (this.hasLiked()) {
-      console.log(`Already liked article ID: ${this.articleId}`);
       return;
     }
 

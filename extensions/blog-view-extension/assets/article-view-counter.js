@@ -18,15 +18,8 @@ class ArticleViewTracker {
 
   sendView() {
     if (this.hasViewed()) {
-      console.log(`View already counted for article ID: ${this.articleId}`);
       return;
     }
-
-    console.log(`Sending view for article ID: ${this.articleId}`);
-
-    console.log("API URL:", this.apiUrl);
-    console.log("Payload:", { article_id: this.articleId });
-
 
     fetch(this.apiUrl, {
       method: "POST",

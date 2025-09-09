@@ -1,9 +1,10 @@
+{{ 'article-app.css' | asset_url | stylesheet_tag }}
 <div class="view-counter center" data-article-id="{{ article.id }}">
   <img src="{{ 'See.svg' | asset_url }}" alt="Views" width="24" height="24">
   <span>{{ article.metafields.custom.view_count }}</span>
 </div>
 
-<script src="{{ 'article-view-counter.js' | asset_url }}" async></script>
+<script src="{{ 'article-view-counter.js' | asset_url }}" defer></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
