@@ -1,0 +1,14 @@
+.like-counter{
+    display: flex;
+    justify-content: center;
+}
+.view-counter{
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+}
+.like-button{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}

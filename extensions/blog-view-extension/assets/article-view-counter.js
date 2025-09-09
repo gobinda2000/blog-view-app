@@ -18,15 +18,8 @@ class ArticleViewTracker {
 
   sendView() {
     if (this.hasViewed()) {
-      console.log(`View already counted for article ID: ${this.articleId}`);
       return;
     }
-
-    console.log(`Sending view for article ID: ${this.articleId}`);
-
-    console.log("API URL:", this.apiUrl);
-    console.log("Payload:", { article_id: this.articleId });
-
 
     fetch(this.apiUrl, {
       method: "POST",
@@ -57,20 +50,3 @@ class ArticleViewTracker {
       });
   }
 }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const viewDiv = document.querySelector(".view-counter");
-
-//   if (!viewDiv) {
-//     console.error("View counter element not found!");
-//     return;
-//   }
-
-//   // ✅ Use your ngrok/production backend URL
-//   const tracker = new ArticleViewTracker(
-//     "https://9d287dbee03e.ngrok-free.app/apps/articles",
-//     viewDiv
-//   );
-
-//   tracker.sendView();
-// });
