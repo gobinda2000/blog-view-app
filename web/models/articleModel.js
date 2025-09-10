@@ -40,4 +40,6 @@ async function updateArticleViewCount(ownerId, newCount) {
   return shopifyGraphQL(mutation, { ownerId, newCount });
 }
 
-module.exports = { getArticleViewCount, updateArticleViewCount };
+
+module.exports = {
+  getArticleViewCount, updateArticleViewCount};
