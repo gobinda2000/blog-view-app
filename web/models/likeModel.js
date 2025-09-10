@@ -14,7 +14,7 @@ class LikeModel {
           likeCount: metafield(namespace: "custom", key: "like_count") {
             value
           }
-          customerLikes: metafield(namespace: "custom", key: "customer_likes") {
+          customerLikes: metafield(namespace: "custom", key: "customer_guest_id") {
             value
           }
         }
@@ -48,7 +48,7 @@ class LikeModel {
       mutation UpdateArticleLikes($ownerId: ID!, $likeCount: String!, $customerLikes: String!) {
         metafieldsSet(metafields: [
           { ownerId: $ownerId, namespace: "custom", key: "like_count", type: "number_integer", value: $likeCount },
-          { ownerId: $ownerId, namespace: "custom", key: "customer_likes", type: "list.single_line_text_field", value: $customerLikes }
+          { ownerId: $ownerId, namespace: "custom", key: "customer_guest_id", type: "list.single_line_text_field", value: $customerGuestId }
         ]) {
           metafields { id key value }
           userErrors { field message }

@@ -1,4 +1,4 @@
-const { getArticleViewCount, updateArticleViewCount ,getArticleLikeCount, updateArticleLikeCount } = require("../models/articleModel");
+const { getArticleViewCount, updateArticleViewCount } = require("../models/articleModel");
 
 async function incrementViewCount(req, res) {
   try {

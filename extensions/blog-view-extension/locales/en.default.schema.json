@@ -10,6 +10,30 @@
               "like": {
                 "label": "Like Count API URL",
               },
+                "content_alignment": {
+                  "label": "Content Alignment",
+              },
+                "section_padding": {
+                  "label": "Section Padding",
+              },
+              "padding_top": {
+                "label": "Padding Top",
+              },
+              "padding_bottom": {
+                "label": "Padding Bottom",
+              },
+              "view_counter_settings": {
+                "label": "View Counter Settings"
+              },
+              "like_counter_settings": {
+                "label": "Like Counter Settings"
+              },
+              "show_view_count": {
+                "label": "Show View Count"
+              },
+              "show_like_count": {
+                "label": "Show Like Count"
+              },
             }
           }
         }

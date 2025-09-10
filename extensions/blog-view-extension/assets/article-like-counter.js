@@ -1,12 +1,3 @@
-async function getOrCreateGuestId() {
-  const existingId = localStorage.getItem("guest_customer_id");
-  if (existingId) return existingId;
-
-  const newId = `guest-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  localStorage.setItem("guest_customer_id", newId);
-  return newId;
-}
-
 class ArticleLikeTracker {
   constructor(apiUrl, articleElement) {
     this.apiUrl = apiUrl; // e.g. "http://localhost:9292/apps/articles"
@@ -16,6 +7,7 @@ class ArticleLikeTracker {
     this.storageKey = `article_liked_${this.articleId}`;
     this.counterSpan = articleElement.querySelector(".like-count");
     this.likeButton = articleElement.querySelector(".like-button");
+    this.messageEl = this.articleElement.querySelector(".like-message"); 
     this.init();
   }
 
@@ -36,6 +28,12 @@ class ArticleLikeTracker {
 
   async sendLike() {
     if (this.hasLiked()) {
+      // ⚠️ Already liked
+      if (this.messageEl) {
+        this.messageEl.textContent = "You already liked this message.";
+        this.messageEl.style.color = "red";
+        this.messageEl.style.display = "block";
+      }
       return;
     }
 
@@ -56,11 +54,19 @@ class ArticleLikeTracker {
     })
     .then(data => {
       console.log("API Response:", data);
-      // ✅ Use the correct field name
+
+      // ✅ Update count if returned by API
       if (data.like_count !== undefined && this.counterSpan) {
         this.counterSpan.textContent = data.like_count;
       }
-      this.markLiked(); // ✅ only after success
+
+      this.markLiked();
+
+      if (this.messageEl) {
+        this.messageEl.textContent = "Thanks for liking!";
+        this.messageEl.style.color = "green";
+        this.messageEl.style.display = "block";
+      }
     })
     .catch(error => {
       console.error("API fetch failed:", error);

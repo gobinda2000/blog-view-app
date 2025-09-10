@@ -16,7 +16,7 @@ async function incrementLikeCount(req, res) {
       : 0;
 
     let customerLikes = [];
-    const rawCustomerLikes = result?.data?.article?.customerLikes?.value;
+    const rawCustomerLikes = result?.data?.article?.customerGuestId?.value;
     if (rawCustomerLikes) {
       try {
         customerLikes = JSON.parse(rawCustomerLikes);
