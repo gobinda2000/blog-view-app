@@ -31,4 +31,5 @@ async function incrementViewCount(req, res) {
   }
 }
 
-module.exports = { incrementViewCount };
+module.exports = { incrementViewCount};
+

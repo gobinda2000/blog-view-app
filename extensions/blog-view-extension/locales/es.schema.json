@@ -1,0 +1,41 @@
+  {
+    "settings_schema": {
+      "global": {
+        "settings": {
+            "blog": {
+              "view": {
+                "label": "Ver URL de API de recuento",
+              },
+              "like": {
+                "label": "Blog como URL de API",
+              },
+                "content_alignment": {
+                  "label": "Alineación de contenido",
+              },
+                "section_padding": {
+                  "label": "Relleno de sección",
+              },
+              "padding_top": {
+                "label": "Relleno superior",
+              },
+              "padding_bottom": {
+                "label": "Relleno inferior",
+              },
+              "view_counter_settings": {
+                "label": "Configuración del contador de vistas"
+              },
+              "like_counter_settings": {
+                "label": "Configuración del contador de likes"
+              },
+              "show_view_count": {
+                "label": "Mostrar contador de vistas"
+              },
+              "show_like_count": {
+                "label": "Mostrar contador de likes"
+              },
+            }
+          }
+        }
+      }
+
+    }
