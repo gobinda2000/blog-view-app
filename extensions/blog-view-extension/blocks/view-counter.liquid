@@ -1,29 +1,55 @@
 {{ 'article-app.css' | asset_url | stylesheet_tag }}
+{% if block.settings.Enable_like_counter==true %}
+<script src="{{ 'article-like-counter.js' | asset_url }}" defer></script>
+{% endif %}
+{% if block.settings.Enable_view_counter==true %}
+<script src="{{ 'article-view-counter.js' | asset_url }}" defer></script>
+{% endif %}
+
+<div class="main-container {{ block.settings.content_alignment }} page-width">
+  {% if block.settings.Enable_view_counter==true %}
 <div class="view-counter center" data-article-id="{{ article.id }}">
   <img src="{{ 'See.svg' | asset_url }}" alt="Views" width="24" height="24">
   <span>{{ article.metafields.custom.view_count }}</span>
 </div>
-<script src="{{ 'article-view-counter.js' | asset_url }}" defer></script>
+{% endif %}
+{% if block.settings.Enable_like_counter==true %}
+<div class="blog-likes like-counter center" data-article-id="{{ article.id }}" data-customer-id="{% if customer %}{{ customer.id }}{% endif %}">
+  <button class="like-button">
+    <img src="{{ 'icon-thumb-up.svg' | asset_url }}" alt="Like" width="24" height="24">
+  </button>
+  <span class="like-count">{{ article.metafields.custom.like_count | default: 0 }}</span>
+</div>
+{% endif %}
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-  const viewDiv = document.querySelector(".view-counter");
+    const viewDiv = document.querySelector(".view-counter");
+    if (viewDiv) {
+      const tracker = new ArticleViewTracker(
+        "{{ block.settings.view_count_api_url }}",
+        viewDiv
+      );
+      tracker.sendView();
+    } else {
+      console.error("View counter element not found!");
+    }
+  });
 
-  if (!viewDiv) {
-    console.error("View counter element not found!");
-    return;
-  }
-
-  // ✅ Use your ngrok/production backend URL
-  const tracker = new ArticleViewTracker(
-    "{{ block.settings.api_url }}",
-    viewDiv
-  );
-
-  tracker.sendView();
-});
-
+  document.addEventListener("DOMContentLoaded", () => {
+    const likeDiv = document.querySelector(".blog-likes");
+    if (likeDiv) {
+      const tracker = new ArticleLikeTracker(
+        "{{ block.settings.like_count_api_url }}", // Your API endpoint
+        likeDiv
+      );
+    } else {
+      console.error("Like button element not found!");
+    }
+  });
 </script>
+
 
 {% schema %}
 {
@@ -31,17 +57,59 @@
   "target": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "api_url",
-      "label": "API URL",
-      "placeholder": "https://your-backend-endpoint.com"   // ✅ instead of autofill
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        },
+      ],
+      "default": "medium",
+      "label": "content alignment",
+      "info": ""
     },
     {
-      "type": "color",
-      "id": "colour",
-      "label": "Star Colour",
-      "default": "#ff0000"
-    }
+      "type": "header",
+      "content": "View Counter Settings"
+    },
+     {
+      "type": "checkbox",
+      "id": "Enable_view_counter",
+      "label": "Show View counter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_count_api_url",
+      "label": "t:settings_schema.global.settings.blog.view.label",
+      "placeholder": "https://your-backend-endpoint.com"   // ✅ instead of autofill
+    },
+     {
+      "type": "header",
+      "content": "Like Counter Settings"
+    },
+     {
+      "type": "checkbox",
+      "id": "Enable_like_counter",
+      "label": "Show Like counter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "like_count_api_url",
+      "label": "t:settings_schema.global.settings.blog.like.label",
+      "placeholder": "https://your-backend-endpoint.com"
+    },
+    
   ]
 }
 {% endschema %}

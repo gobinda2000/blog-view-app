@@ -1,6 +1,5 @@
-
 {{ 'article-app.css' | asset_url | stylesheet_tag }}
-<div class="blog-likes like-counter center" data-article-id="{{ article.id }}">
+<div class="blog-likes like-counter center" data-article-id="{{ article.id }}" data-customer-id="{% if customer %}{{ customer.id }}{% endif %}">
   <button class="like-button">
     <img src="{{ 'icon-thumb-up.svg' | asset_url }}" alt="Like" width="24" height="24">
   </button>
@@ -29,15 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       "type": "text",
       "id": "api_url",
-      "label": "API URL",
+      "label": "t:settings_schema.global.settings.blog.like.label",
       "placeholder": "https://your-backend-endpoint.com"
     },
-    {
-      "type": "color",
-      "id": "colour",
-      "label": "Button Colour",
-      "default": "#ff0000"
-    }
   ]
 }
 {% endschema %}
