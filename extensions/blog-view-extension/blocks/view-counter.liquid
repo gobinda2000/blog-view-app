@@ -34,7 +34,7 @@
     <img src="{{ 'icon-thumb-up.svg' | asset_url }}" alt="Like" width="24" height="24">
   </button>
   <span class="like-count">{{ article.metafields.custom.like_count | default: 0 }}</span>
-  <p class="like-message" style="display:none; margin-left:8px; font-size:14px;"></p>
+  <p class="like-message"></p>
 </div>
 {% endif %}
 </div>

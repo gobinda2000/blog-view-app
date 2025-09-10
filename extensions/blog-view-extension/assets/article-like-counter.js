@@ -1,3 +1,11 @@
+async function getOrCreateGuestId() {
+  const existingId = localStorage.getItem("guest_customer_id");
+  if (existingId) return existingId;
+  const newId = `guest-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  localStorage.setItem("guest_customer_id", newId);
+  return newId;
+}
+
 class ArticleLikeTracker {
   constructor(apiUrl, articleElement) {
     this.apiUrl = apiUrl; // e.g. "http://localhost:9292/apps/articles"
@@ -30,9 +38,15 @@ class ArticleLikeTracker {
     if (this.hasLiked()) {
       // ⚠️ Already liked
       if (this.messageEl) {
-        this.messageEl.textContent = "You already liked this message.";
+        this.messageEl.textContent = "You already liked it.";
         this.messageEl.style.color = "red";
         this.messageEl.style.display = "block";
+        this.messageEl.style.background = "#fde8e8";
+        this.messageEl.style.border = "1px solid #fca5a5";
+
+         setTimeout(() => {
+        this.messageEl.style.display = "none";
+      }, 2000);
       }
       return;
     }
@@ -66,6 +80,12 @@ class ArticleLikeTracker {
         this.messageEl.textContent = "Thanks for liking!";
         this.messageEl.style.color = "green";
         this.messageEl.style.display = "block";
+        this.messageEl.style.background = "#dcfce7";
+        this.messageEl.style.border = "1px solid #86efac";
+
+        setTimeout(() => {
+        this.messageEl.style.display = "none";
+      }, 2000);
       }
     })
     .catch(error => {
