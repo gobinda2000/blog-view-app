@@ -1,5 +1,6 @@
 const { shopifyGraphQL } = require("../services/shopifyService");
 
+// To get total views on article
 async function getArticleViewCount(articleId) {
   const query = `
     query GetArticleViewCount($id: ID!) {
@@ -14,6 +15,7 @@ async function getArticleViewCount(articleId) {
   return shopifyGraphQL(query, { id: articleId });
 }
 
+// To update views on article
 async function updateArticleViewCount(ownerId, newCount) {
   const mutation = `
     mutation UpdateArticleViewCount($ownerId: ID!, $newCount: String!) {
@@ -40,6 +42,5 @@ async function updateArticleViewCount(ownerId, newCount) {
   return shopifyGraphQL(mutation, { ownerId, newCount });
 }
 
-
-module.exports = {
-  getArticleViewCount, updateArticleViewCount};
+// Export functions
+module.exports = { getArticleViewCount, updateArticleViewCount };

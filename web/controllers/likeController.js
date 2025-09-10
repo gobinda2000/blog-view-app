@@ -1,5 +1,5 @@
 // controllers/likeController.js
-const { fetchArticleLikes, updateArticleLikes } = require("../services/likeService");
+const { fetchArticleLikes, updateArticleLikes } = require("../models/likeModel");
 
 async function incrementLikeCount(req, res) {
   try {
@@ -11,6 +11,7 @@ async function incrementLikeCount(req, res) {
     const articleGID = `gid://shopify/Article/${article_id}`;
     const result = await fetchArticleLikes(articleGID);
 
+    // Fetch current count
     const likeCount = result?.data?.article?.likeCount?.value
       ? parseInt(result.data.article.likeCount.value, 10)
       : 0;
